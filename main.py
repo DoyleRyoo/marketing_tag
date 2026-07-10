@@ -1,17 +1,8 @@
 import sys
 
-from PySide6.QtWidgets import QApplication, QLabel, QMainWindow
+from PySide6.QtWidgets import QApplication
 
-
-class MainWindow(QMainWindow):
-    def __init__(self) -> None:
-        super().__init__()
-
-        self.setWindowTitle("칼렛스토어 HTML 매크로")
-        self.resize(1200, 800)
-
-        label = QLabel("HTML 매크로 개발 환경이 정상적으로 실행되었습니다.")
-        self.setCentralWidget(label)
+from app.ui.mainWindow import MainWindow
 
 
 def main() -> int:
