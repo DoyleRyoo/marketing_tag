@@ -1,5 +1,44 @@
 # marketing_tag
 
-세팅을 직접 바꿀 수 있게
-자사몰 이미지 교체 기능을 이용할 수 있게 더미 이미지라도
-자사몰에는 코드로 넣을 수 있는 기능이 있음
+## 구조
+```
+caret-html-macro/
+├── main.py
+├── requirements.txt
+├── .gitignore
+│
+├── app/
+│   ├── __init__.py
+│   ├── constants.py
+│   │
+│   ├── ui/
+│   │   ├── __init__.py
+│   │   ├── mainWindow.py
+│   │   └── settingsDialog.py
+│   │
+│   ├── services/
+│   │   ├── __init__.py
+│   │   ├── specParser.py
+│   │   ├── htmlGenerator.py
+│   │   ├── settingsService.py
+│   │   └── fileService.py
+│   │
+│   └── models/
+│       ├── __init__.py
+│       └── contentData.py
+│
+├── config/
+│   └── settings.json
+│
+├── templates/
+│   ├── naver.html
+│   ├── wordpress.html
+│   └── companyMall.html
+│
+├── tests/
+│   ├── __init__.py
+│   ├── testSpecParser.py
+│   └── testHtmlGenerator.py
+│
+└── output/
+```

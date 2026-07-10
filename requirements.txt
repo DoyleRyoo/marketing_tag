@@ -1,1 +1,4 @@
-pre-commit
+pre-commit==4.6.0
+PySide6==6.11.1
+Jinja2
+pytest==9.1.0
