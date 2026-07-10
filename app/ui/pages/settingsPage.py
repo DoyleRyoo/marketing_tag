@@ -6,21 +6,33 @@ from PySide6.QtWidgets import (
     QMessageBox,
     QPlainTextEdit,
     QPushButton,
+    QStackedWidget,
     QVBoxLayout,
     QWidget,
 )
 
 
 class SettingsPage(QWidget):
+    TEMPLATE_OPTIONS = (
+        ("smallQuantityTemplate", "소량제작"),
+        ("customTemplate", "맞춤제작"),
+    )
+    CATEGORY_OPTIONS = (
+        ("content", "내용 설정"),
+        ("naver", "네이버 설정"),
+        ("wordpress", "워드프레스 설정"),
+        ("companyMall", "자사몰 설정"),
+    )
+
     def __init__(self) -> None:
         super().__init__()
 
         self.loadedSettings = {
-            ("내용 설정", "소량제작"): "",
-            ("내용 설정", "맞춤제작"): "",
-            ("플랫폼 설정", "소량제작"): "",
-            ("플랫폼 설정", "맞춤제작"): "",
+            (templateKey, categoryKey): ""
+            for templateKey, _ in self.TEMPLATE_OPTIONS
+            for categoryKey, _ in self.CATEGORY_OPTIONS
         }
+        self.editorPages: dict[tuple[str, str], QPlainTextEdit] = {}
         self.isDirty = False
 
         mainLayout = QVBoxLayout(self)
@@ -29,56 +41,54 @@ class SettingsPage(QWidget):
 
         titleLabel = QLabel("설정")
         mainLayout.addWidget(titleLabel)
-        mainLayout.addLayout(self._createCategoryLayout())
         mainLayout.addLayout(self._createTemplateLayout())
+        mainLayout.addLayout(self._createCategoryLayout())
         mainLayout.addWidget(self._createEditorArea(), 1)
         mainLayout.addLayout(self._createBottomLayout())
 
-        self._loadCurrentSettingsToEditor()
+        self._applyCurrentSelectionToUi()
         self._setDirtyState(False)
-
-    def _createCategoryLayout(self) -> QHBoxLayout:
-        layout = QHBoxLayout()
-
-        self.contentSettingsButton = QPushButton("내용 설정")
-        self.platformSettingsButton = QPushButton("플랫폼 설정")
-        self.contentSettingsButton.setCheckable(True)
-        self.platformSettingsButton.setCheckable(True)
-        self.contentSettingsButton.setChecked(True)
-
-        categoryButtonGroup = QButtonGroup(self)
-        categoryButtonGroup.setExclusive(True)
-        categoryButtonGroup.addButton(self.contentSettingsButton)
-        categoryButtonGroup.addButton(self.platformSettingsButton)
-
-        self.contentSettingsButton.clicked.connect(self._handleSelectionChanged)
-        self.platformSettingsButton.clicked.connect(self._handleSelectionChanged)
-
-        layout.addWidget(self.contentSettingsButton)
-        layout.addWidget(self.platformSettingsButton)
-        layout.addStretch(1)
-
-        return layout
 
     def _createTemplateLayout(self) -> QHBoxLayout:
         layout = QHBoxLayout()
 
-        self.smallQuantityTemplateButton = QPushButton("소량제작")
-        self.customTemplateButton = QPushButton("맞춤제작")
-        self.smallQuantityTemplateButton.setCheckable(True)
-        self.customTemplateButton.setCheckable(True)
-        self.smallQuantityTemplateButton.setChecked(True)
+        self.templateButtons: dict[str, QPushButton] = {}
+        self.templateButtonGroup = QButtonGroup(self)
+        self.templateButtonGroup.setExclusive(True)
 
-        templateButtonGroup = QButtonGroup(self)
-        templateButtonGroup.setExclusive(True)
-        templateButtonGroup.addButton(self.smallQuantityTemplateButton)
-        templateButtonGroup.addButton(self.customTemplateButton)
+        for index, (templateKey, labelText) in enumerate(self.TEMPLATE_OPTIONS):
+            button = QPushButton(labelText)
+            button.setCheckable(True)
+            button.clicked.connect(self._handleSelectionChanged)
+            self.templateButtonGroup.addButton(button)
+            self.templateButtons[templateKey] = button
+            layout.addWidget(button)
 
-        self.smallQuantityTemplateButton.clicked.connect(self._handleSelectionChanged)
-        self.customTemplateButton.clicked.connect(self._handleSelectionChanged)
+            if index == 0:
+                button.setChecked(True)
 
-        layout.addWidget(self.smallQuantityTemplateButton)
-        layout.addWidget(self.customTemplateButton)
+        layout.addStretch(1)
+
+        return layout
+
+    def _createCategoryLayout(self) -> QHBoxLayout:
+        layout = QHBoxLayout()
+
+        self.categoryButtons: dict[str, QPushButton] = {}
+        self.categoryButtonGroup = QButtonGroup(self)
+        self.categoryButtonGroup.setExclusive(True)
+
+        for index, (categoryKey, labelText) in enumerate(self.CATEGORY_OPTIONS):
+            button = QPushButton(labelText)
+            button.setCheckable(True)
+            button.clicked.connect(self._handleSelectionChanged)
+            self.categoryButtonGroup.addButton(button)
+            self.categoryButtons[categoryKey] = button
+            layout.addWidget(button)
+
+            if index == 0:
+                button.setChecked(True)
+
         layout.addStretch(1)
 
         return layout
@@ -89,14 +99,27 @@ class SettingsPage(QWidget):
 
         editorLayout = QVBoxLayout(self.editorFrame)
         self.editorTitleLabel = QLabel()
-        self.settingsEdit = QPlainTextEdit()
-        self.settingsEdit.setPlaceholderText("설정 편집")
-        self.settingsEdit.textChanged.connect(self._handleSettingsEdited)
+        self.editorStack = QStackedWidget()
 
         editorLayout.addWidget(self.editorTitleLabel)
-        editorLayout.addWidget(self.settingsEdit, 1)
+        editorLayout.addWidget(self.editorStack, 1)
+
+        for templateKey, templateLabel in self.TEMPLATE_OPTIONS:
+            for categoryKey, categoryLabel in self.CATEGORY_OPTIONS:
+                page = self._createEditorPage(templateLabel, categoryLabel)
+                self.editorPages[(templateKey, categoryKey)] = page
+                self.editorStack.addWidget(page)
 
         return self.editorFrame
+
+    def _createEditorPage(
+        self, templateLabel: str, categoryLabel: str
+    ) -> QPlainTextEdit:
+        editor = QPlainTextEdit()
+        editor.setPlaceholderText(f"{templateLabel} / {categoryLabel}")
+        editor.textChanged.connect(self._handleSettingsEdited)
+
+        return editor
 
     def _createBottomLayout(self) -> QHBoxLayout:
         layout = QHBoxLayout()
@@ -122,29 +145,42 @@ class SettingsPage(QWidget):
 
         return layout
 
-    def _currentCategoryText(self) -> str:
-        if self.contentSettingsButton.isChecked():
-            return self.contentSettingsButton.text()
-        return self.platformSettingsButton.text()
+    def getCurrentTemplateKey(self) -> str:
+        for templateKey, button in self.templateButtons.items():
+            if button.isChecked():
+                return templateKey
 
-    def _currentTemplateText(self) -> str:
-        if self.smallQuantityTemplateButton.isChecked():
-            return self.smallQuantityTemplateButton.text()
-        return self.customTemplateButton.text()
+        return self.TEMPLATE_OPTIONS[0][0]
+
+    def getCurrentCategoryKey(self) -> str:
+        for categoryKey, button in self.categoryButtons.items():
+            if button.isChecked():
+                return categoryKey
+
+        return self.CATEGORY_OPTIONS[0][0]
 
     def _currentSettingsKey(self) -> tuple[str, str]:
-        return (self._currentCategoryText(), self._currentTemplateText())
+        return (self.getCurrentTemplateKey(), self.getCurrentCategoryKey())
 
-    def _updateEditorTitle(self) -> None:
+    def _currentTemplateLabel(self) -> str:
+        return self.templateButtons[self.getCurrentTemplateKey()].text()
+
+    def _currentCategoryLabel(self) -> str:
+        return self.categoryButtons[self.getCurrentCategoryKey()].text()
+
+    def _currentEditor(self) -> QPlainTextEdit:
+        return self.editorPages[self._currentSettingsKey()]
+
+    def _applyCurrentSelectionToUi(self) -> None:
+        currentEditor = self._currentEditor()
+        self.editorStack.setCurrentWidget(currentEditor)
         self.editorTitleLabel.setText(
-            f"{self._currentCategoryText()} / {self._currentTemplateText()}"
+            f"{self._currentTemplateLabel()} / {self._currentCategoryLabel()}"
         )
 
-    def _loadCurrentSettingsToEditor(self) -> None:
-        self._updateEditorTitle()
-        self.settingsEdit.blockSignals(True)
-        self.settingsEdit.setPlainText(self.loadedSettings[self._currentSettingsKey()])
-        self.settingsEdit.blockSignals(False)
+        currentEditor.blockSignals(True)
+        currentEditor.setPlainText(self.loadedSettings[self._currentSettingsKey()])
+        currentEditor.blockSignals(False)
 
     def _setDirtyState(self, isDirty: bool) -> None:
         self.isDirty = isDirty
@@ -156,15 +192,17 @@ class SettingsPage(QWidget):
         self._setDirtyState(True)
 
     def _handleSelectionChanged(self) -> None:
-        self._loadCurrentSettingsToEditor()
+        self._applyCurrentSelectionToUi()
         self._setDirtyState(False)
 
     def _handleCancelClicked(self) -> None:
-        self._loadCurrentSettingsToEditor()
+        self._applyCurrentSelectionToUi()
         self._setDirtyState(False)
 
     def _handleSaveClicked(self) -> None:
-        self.loadedSettings[self._currentSettingsKey()] = self.settingsEdit.toPlainText()
+        self.loadedSettings[self._currentSettingsKey()] = (
+            self._currentEditor().toPlainText()
+        )
         self._setDirtyState(False)
 
     def _handleRestoreDefaultsClicked(self) -> None:
@@ -172,7 +210,7 @@ class SettingsPage(QWidget):
         messageBox.setIcon(QMessageBox.Icon.Question)
         messageBox.setWindowTitle("기본값 복원")
         messageBox.setText(
-            f"현재 선택된 템플릿({self._currentTemplateText()})의 기본값을 복원하시겠습니까?"
+            f"현재 선택된 템플릿({self._currentTemplateLabel()})의 기본값을 복원하시겠습니까?"
         )
 
         cancelButton = messageBox.addButton("취소", QMessageBox.ButtonRole.RejectRole)

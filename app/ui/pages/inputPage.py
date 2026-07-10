@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from PySide6.QtCore import Signal
 from PySide6.QtWidgets import (
     QButtonGroup,
     QFrame,
@@ -14,6 +15,8 @@ from PySide6.QtWidgets import (
 
 
 class InputPage(QWidget):
+    settingsRequested = Signal()
+
     MAX_IMAGE_COUNT = 9
 
     def __init__(self) -> None:
@@ -25,8 +28,7 @@ class InputPage(QWidget):
         mainLayout.setContentsMargins(24, 24, 24, 24)
         mainLayout.setSpacing(18)
 
-        titleLabel = QLabel("입력")
-        mainLayout.addWidget(titleLabel)
+        mainLayout.addLayout(self._createTitleLayout())
 
         mainLayout.addLayout(self._createTemplateLayout())
         mainLayout.addLayout(self._createThumbnailLayout())
@@ -130,6 +132,19 @@ class InputPage(QWidget):
         if hasattr(mainWindow, "showOutputPage"):
             mainWindow.showOutputPage()
 
+    def _createTitleLayout(self) -> QHBoxLayout:
+        layout = QHBoxLayout()
+
+        titleLabel = QLabel("입력")
+        self.settingsButton = QPushButton("설정")
+        self.settingsButton.clicked.connect(self.settingsRequested.emit)
+
+        layout.addWidget(titleLabel)
+        layout.addStretch(1)
+        layout.addWidget(self.settingsButton)
+
+        return layout
+
     def _createTemplateLayout(self) -> QHBoxLayout:
         layout = QHBoxLayout()
 
@@ -216,7 +231,7 @@ class InputPage(QWidget):
             "품명 : 생분해 지퍼백\n"
             "규격 : 320*430+20\n"
             "소재 : EL724(생분해)\n"
-            "인쇄 :단면_1도 블랙\n"
+            "인쇄 : 단면_1도 블랙\n"
             "링크:https://www.example.com/"
         )
         layout.addWidget(self.contentEdit, 1)
