@@ -1,0 +1,48 @@
+<section class="screen is-active" data-screen="output" aria-labelledby="output-title">
+  <header class="screen-header">
+    <h1 id="output-title">출력</h1>
+  </header>
+
+  <div class="screen-content output-layout">
+    <section class="panel" aria-labelledby="platform-title">
+      <h2 id="platform-title" class="section-title">플랫폼 선택</h2>
+      <div class="segmented-control" data-control="platform">
+        <button class="choice-button is-selected" type="button" data-platform="naver">
+          네이버
+        </button>
+        <button class="choice-button" type="button" data-platform="wordpress">
+          워드프레스
+        </button>
+        <button class="choice-button" type="button" data-platform="company-mall">
+          칼렛스토어
+        </button>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="view-mode-title">
+      <h2 id="view-mode-title" class="section-title">보기 방식</h2>
+      <div class="segmented-control" data-control="view-mode">
+        <button class="choice-button is-selected" type="button" data-view-mode="preview">
+          글
+        </button>
+        <button class="choice-button" type="button" data-view-mode="html-code">
+          코드
+        </button>
+      </div>
+    </section>
+
+    <section class="panel output-panel" aria-labelledby="output-content-title">
+      <h2 id="output-content-title" class="section-title">출력 결과</h2>
+      <div class="output-area" data-output-area>
+        생성된 결과가 표시될 콘텐츠 영역입니다.
+      </div>
+    </section>
+  </div>
+
+  <footer class="action-bar action-bar-split">
+    <p class="helper-text">해당 내용은 자동 저장되지 않습니다.</p>
+    <button class="button button-secondary" type="button" data-action="back-to-input">
+      돌아가기
+    </button>
+  </footer>
+</section>

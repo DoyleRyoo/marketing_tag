@@ -1,0 +1,58 @@
+<section class="screen is-active" data-screen="input" aria-labelledby="input-title">
+  <header class="screen-header">
+    <h1 id="input-title">입력</h1>
+    <button class="button button-secondary" type="button" data-action="open-settings">
+      설정
+    </button>
+  </header>
+
+  <div class="screen-content input-layout">
+    <section class="panel" aria-labelledby="input-template-title">
+      <h2 id="input-template-title" class="section-title">템플릿 선택</h2>
+      <div class="segmented-control" data-control="template">
+        <button class="choice-button is-selected" type="button" data-template="small-quantity">
+          소량제작
+        </button>
+        <button class="choice-button" type="button" data-template="custom-made">
+          맞춤제작
+        </button>
+      </div>
+    </section>
+
+    <section class="panel upload-panel" aria-labelledby="thumbnail-upload-title">
+      <div>
+        <h2 id="thumbnail-upload-title" class="section-title">썸네일</h2>
+        <p class="helper-text">썸네일 이미지 선택 영역</p>
+      </div>
+      <div class="upload-zone" data-upload-zone="thumbnail">
+        <span>파일 선택 또는 업로드 영역</span>
+      </div>
+    </section>
+
+    <section class="panel upload-panel" aria-labelledby="content-upload-title">
+      <div>
+        <h2 id="content-upload-title" class="section-title">이미지</h2>
+        <p class="helper-text">최대 10개 이하의 이미지를 추가할 수 있습니다.</p>
+      </div>
+      <div class="upload-zone" data-upload-zone="content-images">
+        <span>파일 선택 또는 업로드 영역</span>
+      </div>
+    </section>
+
+    <section class="panel content-input-panel" aria-labelledby="content-input-title">
+      <h2 id="content-input-title" class="section-title">내용</h2>
+      <textarea
+        class="textarea"
+        data-input="content"
+        rows="8"
+        placeholder="여러 줄의 내용을 입력하는 영역입니다."
+      ></textarea>
+    </section>
+  </div>
+
+  <footer class="action-bar">
+    <button class="button button-primary" type="button" data-action="generate-html">
+      글 작성
+    </button>
+  </footer>
+</section>

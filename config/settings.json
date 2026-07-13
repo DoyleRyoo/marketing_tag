@@ -1,25 +1,21 @@
 {
   "customTemplate": {
     "thumbnailCaption": "©칼렛스토어",
-    "customIntro": "칼렛스토어는 제품 포장을 브랜드 경험으로 확장합니다.\n칼렛스토어는 단순한 보호용 포장재를 넘어\n브랜드가 지향하는 감도와 메시지를 담아낼 수 있는 패키지 솔루션을 제안합니다.",
-    "customFeatures": [
-      "✔️ 구조 설계부터 소재, 인쇄 방식까지 커스터마이징 가능",
-      "✔️ 견적 무료 제공",
-      "✔️ 로고, 상세페이지, 패키지 디자인 서비스 제공",
-      "✔️ 소량제작 및 선물세트 구성 대응 가능"
-    ],
+    "customIntro": "칼렛스토어는 제품 포장을 브랜드 경험으로 확장합니다.<br>칼렛스토어는 단순한 보호용 포장재를 넘어<br>브랜드가 지향하는 감도와 메시지를 담아낼 수 있는 패키지 솔루션을 제안합니다.",
+    "customFeatures": "✔️ 구조 설계부터 소재, 인쇄 방식까지 커스터마이징 가능<br>✔️ 견적 무료 제공<br>✔️ 로고, 상세페이지, 패키지 디자인 서비스 제공<br>✔️ 소량제작 및 선물세트 구성 대응 가능",
+    
     "customLink": {
       "text": "➜ 칼렛스토어 맞춤제작 문의하기",
       "url": "https://www.caretstore.co.kr/customizing/customizing-products/"
     },
-    "companyIntro": "칼렛스토어는\n고객의 시간과 비용을 줄이고 효율을 높여드리는\n똑똑한 패키징 솔루션 플랫폼입니다.\n\n다양한 제조파트너사의 포장재를\n하나의 플랫폼에서 비교, 구매할 수 있습니다.",
+    "companyIntro": "칼렛스토어는<br>고객의 시간과 비용을 줄이고 효율을 높여드리는<br>똑똑한 패키징 솔루션 플랫폼입니다.<br><br>다양한 제조파트너사의 포장재를<br>하나의 플랫폼에서 비교, 구매할 수 있습니다.",
     "platformLinks": {
       "naver": {
         "text": "https://www.caretstore.co.kr/",
         "url": "https://www.caretstore.co.kr/"
       },
       "companyMall": {
-        "text": "회원가입하고 5만원 쿠폰팩 받기",
+        "text": "<b>회원가입하고 5만원 쿠폰팩 받기</b>",
         "url": "https://www.caretstore.co.kr/register/"
       },
       "wordpress": {
@@ -30,9 +26,9 @@
   },
   "smallQuantityTemplate": {
     "thumbnailCaption": "©칼렛스토어",
-    "benefitItems": [
+    "benefitItemsTable": [
       {
-        "title": "동판비 0원,\n최소 한 묶음부터",
+        "title": "동판비 0원,<br>최소 한 묶음부터",
         "description": "동판 제작비가 발생하지 않아 부담 없이 디자인 변경 및 재주문이 가능합니다."
       },
       {
@@ -52,26 +48,22 @@
       "text": "➜ 칼렛스토어 소량인쇄 더 알아보기",
       "url": "https://www.caretstore.co.kr/customizing/print/"
     },
-    "customIntro": "패키지는 브랜드의 감도와 지속가능성을 동시에 담는 매체입니다.\n칼렛스토어는 브랜드의 가치와 제품 특성에 맞춘 구조, 재질, 인쇄 조합을 제안하며\n소량제작부터 고급 브랜드 전용 박스까지 폭넓게 대응합니다.",
-    "solutionTitle": "칼렛스토어 스마트 패키징 & 디자인 솔루션",
-    "customFeatures": [
-      "구조 설계부터 소재, 인쇄 방식 커스터마이징 가능",
-      "탄소중립마크 / FSC / 소이잉크 등 인증 옵션 선택 가능",
-      "프리미엄 포장 가공 (형압, 동판, 싸바리 등) 대응",
-      "디자인 + 인쇄 + 제작 원스톱 제공"
-    ],
+    "customIntro": "패키지는 브랜드의 감도와 지속가능성을 동시에 담는 매체입니다.<br>칼렛스토어는 브랜드의 가치와 제품 특성에 맞춘 구조, 재질, 인쇄 조합을 제안하며<br>소량제작부터 고급 브랜드 전용 박스까지 폭넓게 대응합니다.",
+    "solutionTitle": "<b><u>칼렛스토어 스마트 패키징 & 디자인 솔루션</u></b>",
+    "customFeatures": "구조 설계부터 소재, 인쇄 방식 커스터마이징 가능<br>탄소중립마크 / FSC / 소이잉크 등 인증 옵션 선택 가능<br>프리미엄 포장 가공 (형압, 동판, 싸바리 등) 대응<br>디자인 + 인쇄 + 제작 원스톱 제공",
+
     "customLink": {
       "text": "https://www.caretstore.co.kr/customizing/print/",
       "url": "https://www.caretstore.co.kr/customizing/print/"
     },
-    "companyIntro": "칼렛스토어는\n고객의 시간과 비용을 줄이고 효율을 높여드리는\n똑똑한 패키징 솔루션 플랫폼입니다.\n\n다양한 제조파트너사의 포장재를\n하나의 플랫폼에서 비교, 구매할 수 있습니다.",
+    "companyIntro": "칼렛스토어는<br>고객의 시간과 비용을 줄이고 효율을 높여드리는<br>똑똑한 패키징 솔루션 플랫폼입니다.<br><br>다양한 제조파트너사의 포장재를<br>하나의 플랫폼에서 비교, 구매할 수 있습니다.",
     "platformLinks": {
       "naver": {
         "text": "https://www.caretstore.co.kr/",
         "url": "https://www.caretstore.co.kr/"
       },
       "companyMall": {
-        "text": "회원가입하고 5만원 쿠폰팩 받기",
+        "text": "<b>회원가입하고 5만원 쿠폰팩 받기</b>",
         "url": "https://www.caretstore.co.kr/register/"
       },
       "wordpress": {
