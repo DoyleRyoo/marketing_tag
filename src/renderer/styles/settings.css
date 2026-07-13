@@ -6,8 +6,49 @@
   min-height: 320px;
 }
 
-.editor-placeholder {
+.editor-placeholder,
+.settings-editor-wrapper {
+  width: 100%;
+  min-width: 0;
   min-height: 260px;
+}
+
+.settings-status {
+  margin: 0 0 12px;
+  color: #5f6b7a;
+  font-size: 14px;
+}
+
+.settings-url-field {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.settings-url-field label {
+  color: #3f4a59;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.settings-url-field input {
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid #cfd6df;
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: #1f2937;
+  font: inherit;
+}
+
+.settings-editor-wrapper .ck.ck-editor,
+.settings-editor-wrapper .ck-editor__top,
+.settings-editor-wrapper .ck-editor__main {
+  width: 100%;
+}
+
+.settings-editor-wrapper .ck-editor__editable_inline {
+  min-height: 800px;
 }
 
 .category-list {

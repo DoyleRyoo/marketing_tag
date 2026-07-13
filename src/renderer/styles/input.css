@@ -7,6 +7,51 @@
   justify-content: flex-end;
 }
 
+.output-panel {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.output-panel .section-title {
+  margin-right: auto;
+}
+
+.output-area {
+  min-height: 260px;
+}
+
+.output-editor-wrapper {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  align-self: stretch;
+  text-align: left;
+}
+
+.output-editor-wrapper .ck.ck-editor,
+.output-editor-wrapper .ck-editor__top,
+.output-editor-wrapper .ck-editor__main {
+  width: 100%;
+}
+
+.output-editor-wrapper .ck-editor__editable_inline {
+  min-height: 800px;
+}
+
+.output-code-view {
+  min-height: 220px;
+  margin: 0;
+  padding: 12px;
+  overflow: auto;
+  white-space: pre-wrap;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: #ffffff;
+  color: var(--color-text);
+}
+
 @media (max-width: 680px) {
   .upload-panel {
     grid-template-columns: 1fr;

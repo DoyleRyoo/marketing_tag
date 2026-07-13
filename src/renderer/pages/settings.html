@@ -39,8 +39,13 @@
 
     <section class="panel editor-panel" aria-labelledby="settings-editor-title">
       <h2 id="settings-editor-title" class="section-title">편집 영역</h2>
-      <div class="editor-placeholder" data-editor-placeholder>
-        ckeditor
+      <p class="settings-status" data-settings-status aria-live="polite"></p>
+      <div class="settings-url-field" data-settings-url-field hidden>
+        <label for="settings-url-input">URL</label>
+        <input id="settings-url-input" type="url" data-settings-url-input readonly />
+      </div>
+      <div class="settings-editor-wrapper">
+        <div data-editor="settings"></div>
       </div>
     </section>
   </div>

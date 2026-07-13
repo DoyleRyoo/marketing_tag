@@ -4,13 +4,79 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Marketing Tag</title>
+    <link rel="stylesheet" href="./renderer.css" />
     <link rel="stylesheet" href="./styles/common.css" />
     <link rel="stylesheet" href="./styles/input.css" />
     <link rel="stylesheet" href="./styles/output.css" />
     <link rel="stylesheet" href="./styles/settings.css" />
   </head>
   <body>
-    <main id="app" class="app-shell"></main>
+    <header class="screen-header">
+    <h1 id="input-title">복사 붙여넣기</h1>
+  </header>
+
+  <div class="screen-content input-layout">
+    <section class="panel" aria-labelledby="input-template-title">
+      <h2 id="input-template-title" class="section-title">템플릿 선택</h2>
+        <div class="segmented-control" data-control="template">
+          <button class="choice-button is-selected" type="button" data-template="small-quantity">
+            소량제작
+          </button>
+          <button class="choice-button" type="button" data-template="custom-made">
+            맞춤제작
+          </button>
+        </div>
+      </section>
+
+      <section class="panel content-input-panel" aria-labelledby="content-input-title">
+        <h2 id="content-input-title" class="section-title">내용</h2>
+        <textarea
+          class="textarea"
+          data-input="content"
+          rows="8"
+          placeholder="여러 줄의 내용을 입력하는 영역입니다."
+        ></textarea>
+      </section>
+    </div>
+
+    <div class="screen-content output-layout">
+      <section class="panel" aria-labelledby="platform-title">
+        <h2 id="platform-title" class="section-title">플랫폼 선택</h2>
+        <div class="segmented-control" data-control="platform">
+          <button class="choice-button is-selected" type="button" data-platform="naver">
+            네이버
+          </button>
+          <button class="choice-button" type="button" data-platform="wordpress">
+            워드프레스
+          </button>
+          <button class="choice-button" type="button" data-platform="company-mall">
+            칼렛스토어
+          </button>
+        </div>
+      </section>
+
+      <section class="panel output-panel" aria-labelledby="output-content-title">
+        <h2 id="output-content-title" class="section-title">출력 결과</h2>
+        <button class="choice-button is-selected" type="button" data-view-mode="preview">
+          글
+        </button>
+        <button class="choice-button" type="button" data-view-mode="html-code">
+          코드
+        </button>
+      </section>
+
+      <div class="output-area output-editor-wrapper" data-output-area>
+        <div data-editor="output"></div>
+        <pre class="output-code-view" data-output-code hidden></pre>
+      </div>
+    </div>
+    
+    <footer class="action-bar settings-actions">
+      <button class="button button-primary" type="button" data-action="save-settings">
+          변경사항 저장
+        </button>
+    </footer>
+    
     <script src="./renderer.js"></script>
   </body>
 </html>

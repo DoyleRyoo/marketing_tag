@@ -1,13 +1,14 @@
 # marketing_tag
 
-## 사용된 툴
+# 사용된 툴
 ```
 HTML/CSS
 TypeScript
 Electron
+esbuild
 ```
 
-## 구조
+# 구조
 ```
 project/
 ├── src/
@@ -23,3 +24,5 @@ project/
 ├── package-lock.json
 └── tsconfig.json
 ```
+
+# 
