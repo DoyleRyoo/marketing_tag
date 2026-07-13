@@ -1,0 +1,65 @@
+<section class="screen is-active" data-screen="settings" aria-labelledby="settings-title">
+  <header class="screen-header">
+    <h1 id="settings-title">설정</h1>
+  </header>
+
+  <div class="screen-content settings-layout">
+    <section class="panel" aria-labelledby="settings-template-title">
+      <h2 id="settings-template-title" class="section-title">템플릿 선택</h2>
+      <div class="segmented-control" data-control="settings-template">
+        <button class="choice-button is-selected" type="button" data-template="small-quantity">
+          소량제작
+        </button>
+        <button class="choice-button" type="button" data-template="custom-made">
+          맞춤제작
+        </button>
+        <button class="choice-button" type="button" data-template="add-template">
+          +
+        </button>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="settings-category-title">
+      <h2 id="settings-category-title" class="section-title">설정 범주</h2>
+      <div class="category-list" data-control="settings-category">
+        <button class="category-button is-selected" type="button" data-category="content">
+          내용 설정
+        </button>
+        <button class="category-button" type="button" data-category="naver">
+          네이버 설정
+        </button>
+        <button class="category-button" type="button" data-category="company-mall">
+          자사몰 설정
+        </button>
+        <button class="category-button" type="button" data-category="wordpress">
+          워드프레스 설정
+        </button>
+      </div>
+    </section>
+
+    <section class="panel editor-panel" aria-labelledby="settings-editor-title">
+      <h2 id="settings-editor-title" class="section-title">편집 영역</h2>
+      <div class="editor-placeholder" data-editor-placeholder>
+        ckeditor
+      </div>
+    </section>
+  </div>
+
+  <footer class="action-bar settings-actions">
+    <p class="helper-text">저장되지 않은 변경사항이 표시될 영역입니다.</p>
+    <div class="button-row">
+      <button class="button button-secondary" type="button" data-action="restore-defaults">
+        기본값 복원
+      </button>
+      <button class="button button-secondary" type="button" data-action="cancel-settings">
+        취소
+      </button>
+      <button class="button button-primary" type="button" data-action="save-settings">
+        변경사항 저장
+      </button>
+      <button class="button button-secondary" type="button" data-action="return-input">
+        입력 화면으로 돌아가기
+      </button>
+    </div>
+  </footer>
+</section>

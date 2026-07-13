@@ -1,0 +1,24 @@
+.settings-actions {
+  align-items: flex-start;
+}
+
+.editor-panel {
+  min-height: 320px;
+}
+
+.editor-placeholder {
+  min-height: 260px;
+}
+
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+@media (max-width: 680px) {
+  .settings-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}

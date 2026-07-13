@@ -1,0 +1,10 @@
+.upload-panel {
+  grid-template-columns: minmax(130px, 180px) minmax(0, 1fr);
+  align-items: stretch;
+}
+
+@media (max-width: 680px) {
+  .upload-panel {
+    grid-template-columns: 1fr;
+  }
+}
