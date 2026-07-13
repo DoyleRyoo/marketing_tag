@@ -19,24 +19,20 @@
       </div>
     </section>
 
-    <section class="panel" aria-labelledby="view-mode-title">
-      <h2 id="view-mode-title" class="section-title">보기 방식</h2>
-      <div class="segmented-control" data-control="view-mode">
-        <button class="choice-button is-selected" type="button" data-view-mode="preview">
-          글
-        </button>
-        <button class="choice-button" type="button" data-view-mode="html-code">
-          코드
-        </button>
-      </div>
-    </section>
-
     <section class="panel output-panel" aria-labelledby="output-content-title">
       <h2 id="output-content-title" class="section-title">출력 결과</h2>
+      
+      <button class="choice-button is-selected" type="button" data-view-mode="preview">
+          미리보기
+        </button>
+        <button class="choice-button" type="button" data-view-mode="html-code">
+          HTML 코드
+        </button>
+        
+    </section>
       <div class="output-area" data-output-area>
         생성된 결과가 표시될 콘텐츠 영역입니다.
       </div>
-    </section>
   </div>
 
   <footer class="action-bar action-bar-split">

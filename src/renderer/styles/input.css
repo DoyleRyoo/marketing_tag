@@ -3,6 +3,10 @@
   align-items: stretch;
 }
 
+[data-screen="input"] .action-bar {
+  justify-content: flex-end;
+}
+
 @media (max-width: 680px) {
   .upload-panel {
     grid-template-columns: 1fr;

@@ -1,5 +1,12 @@
 .output-panel {
-  min-height: 320px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.output-panel .section-title {
+  margin-right: auto;
 }
 
 .output-area {
